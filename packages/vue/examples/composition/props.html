@@ -1,0 +1,20 @@
+<script src="../../dist/vue.global.js"></script>
+
+<div id="demo">
+  <!-- <span>{{title}}</span> -->
+</div>
+
+<script>
+  Vue.createApp({
+    setup() {
+      return () => {
+        console.log('h')
+        return Vue.h('span', { id: '111' }, '111')
+      }
+    },
+  }).mount('#demo')
+</script>
+
+<style>
+
+</style>

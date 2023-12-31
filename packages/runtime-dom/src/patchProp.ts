@@ -21,6 +21,7 @@ export const patchProp: DOMRendererOptions['patchProp'] = (
   parentSuspense,
   unmountChildren
 ) => {
+  console.log('patchProp')
   if (key === 'class') {
     patchClass(el, nextValue, isSVG)
   } else if (key === 'style') {
