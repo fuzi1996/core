@@ -1,0 +1,28 @@
+<script src="../../dist/vue.global.js"></script>
+
+<div id="demo">
+  <template>
+    <div ref="root">This is a root element</div>
+  </template>
+</div>
+
+<script>
+  Vue.createApp({
+    setup() {
+      const root = Vue.ref(null)
+
+      Vue.onMounted(() => {
+        // DOM 元素将在初始渲染后分配给 ref
+        console.log(root.value) // <div>This is a root element</div>
+      })
+
+      return {
+        root
+      }
+    },
+  }).mount('#demo')
+</script>
+
+<style>
+
+</style>

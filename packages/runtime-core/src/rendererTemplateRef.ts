@@ -27,6 +27,7 @@ export function setRef(
   vnode: VNode,
   isUnmount = false,
 ) {
+  // 如果 rawRef 是数组，则遍历递归执行 setRef
   if (isArray(rawRef)) {
     rawRef.forEach((r, i) =>
       setRef(
@@ -46,6 +47,7 @@ export function setRef(
     return
   }
 
+  // 如果 vnode 是组件 vnode，refValue 指向组件的实例，否则指向元素的 DOM
   const refValue =
     vnode.shapeFlag & ShapeFlags.STATEFUL_COMPONENT
       ? getExposeProxy(vnode.component!) || vnode.component!.proxy
@@ -63,7 +65,7 @@ export function setRef(
   const oldRef = oldRawRef && (oldRawRef as VNodeNormalizedRefAtom).r
   const refs = owner.refs === EMPTY_OBJ ? (owner.refs = {}) : owner.refs
   const setupState = owner.setupState
-
+  // ref 动态更新，删除旧的
   // dynamic ref changed. unset old ref
   if (oldRef != null && oldRef !== ref) {
     if (isString(oldRef)) {
